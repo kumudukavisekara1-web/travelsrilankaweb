@@ -1,0 +1,383 @@
+/* ==========================================================================
+   TRAVEL SRI LANKA - MODERN TROPICAL DESIGN SYSTEM
+   "One Island. Endless Experiences."
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+:root {
+  /* Tropical Sri Lankan Color Palette */
+  --primary-ocean: #007791;
+  --primary-deep: #083344;
+  --tropical-emerald: #1B4D3E;
+  --jungle-green: #2D6A4F;
+  --warm-sand: #E9C46A;
+  --golden-amber: #D4A373;
+  --sunset-terracotta: #E76F51;
+  --island-coral: #F4A261;
+  --bg-cream: #FCFAF7;
+  --bg-card: #FFFFFF;
+  --text-main: #1E293B;
+  --text-muted: #64748B;
+  --text-light: #F8FAFC;
+  
+  /* Elevation & Shadows */
+  --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.05);
+  --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.08);
+  --shadow-lg: 0 16px 40px rgba(15, 23, 42, 0.12);
+  --shadow-glow: 0 0 30px rgba(0, 119, 145, 0.25);
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-full: 9999px;
+}
+
+/* Global Reset & Base */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  color-scheme: light;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: var(--text-main);
+  background-color: var(--bg-cream);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Typography */
+h1, h2, h3, h4, .font-serif {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+/* Glassmorphism Styles */
+.glass-nav {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.glass-nav.scrolled {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.glass-card-dark {
+  background: rgba(8, 51, 68, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #FFFFFF;
+}
+
+.glass-modal {
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+::-webkit-scrollbar-track {
+  background: #F1F5F9;
+}
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-ocean);
+}
+
+/* Hero Section Styles */
+.hero-slider-container {
+  position: relative;
+  height: 100vh;
+  min-height: 650px;
+  overflow: hidden;
+}
+
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: scale(1.08);
+  transition: opacity 1.4s cubic-bezier(0.4, 0, 0.2, 1), transform 8s ease-out;
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-slide.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.hero-overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(8, 51, 68, 0.35) 0%,
+    rgba(8, 51, 68, 0.5) 45%,
+    rgba(8, 51, 68, 0.88) 100%
+  );
+}
+
+/* Animated Floating Elements */
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-float {
+  animation: floatSlow 5s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 15px rgba(233, 196, 106, 0.4); }
+  50% { box-shadow: 0 0 30px rgba(233, 196, 106, 0.8); }
+}
+
+.glow-sand {
+  animation: pulseGlow 3s infinite;
+}
+
+/* Subtle Scroll Indicator Bounce */
+@keyframes scrollBounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(10px); }
+  60% { transform: translateY(5px); }
+}
+
+.scroll-indicator-bounce {
+  animation: scrollBounce 2.5s infinite;
+}
+
+/* Custom Interactive Cards */
+.interactive-card {
+  transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: transform, box-shadow;
+}
+
+.interactive-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 35px -10px rgba(8, 51, 68, 0.15);
+}
+
+.interactive-card .card-img-zoom {
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.interactive-card:hover .card-img-zoom {
+  transform: scale(1.06);
+}
+
+/* Category Filter Tabs */
+.filter-btn {
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+
+.filter-btn.active {
+  background-color: var(--primary-ocean);
+  color: #FFFFFF;
+  box-shadow: 0 4px 14px rgba(0, 119, 145, 0.35);
+}
+
+/* Leaflet Map Custom Styling */
+#sri-lanka-map {
+  height: 580px;
+  width: 100%;
+  border-radius: var(--radius-lg);
+  z-index: 10;
+}
+
+.custom-map-marker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #FFFFFF;
+  border: 2px solid var(--primary-ocean);
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.custom-map-marker:hover, .custom-map-marker.active-pin {
+  transform: scale(1.25);
+  background: var(--warm-sand);
+  border-color: #083344;
+  z-index: 1000 !important;
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: 16px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2) !important;
+}
+
+.leaflet-popup-content {
+  margin: 0 !important;
+  line-height: 1.4 !important;
+}
+
+/* Masonry Photo Gallery */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-auto-rows: 240px;
+  grid-auto-flow: dense;
+  gap: 16px;
+}
+
+.gallery-item {
+  position: relative;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.gallery-item.tall {
+  grid-row: span 2;
+}
+
+.gallery-item.wide {
+  grid-column: span 2;
+}
+
+@media (max-width: 640px) {
+  .gallery-item.wide {
+    grid-column: span 1;
+  }
+}
+
+/* Lightbox Modal */
+.lightbox-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(12px);
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-modal.active {
+  display: flex;
+}
+
+/* Toast Notifications */
+#toast-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
+}
+
+.toast {
+  pointer-events: auto;
+  min-width: 300px;
+  max-width: 420px;
+  padding: 16px 20px;
+  background: #083344;
+  color: #FFFFFF;
+  border-left: 4px solid var(--warm-sand);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  animation: slideInRight 0.35s ease-out forwards;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Trip Planner Timeline */
+.timeline-stem {
+  position: absolute;
+  left: 20px;
+  top: 36px;
+  bottom: 20px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--primary-ocean), var(--warm-sand));
+}
+
+/* Badges & Tags */
+.badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: var(--radius-full);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Custom Checkbox Pill */
+.checkbox-pill input:checked + span {
+  background-color: var(--primary-ocean);
+  color: #FFFFFF;
+  border-color: var(--primary-ocean);
+  box-shadow: 0 4px 12px rgba(0, 119, 145, 0.3);
+}
+
+/* Print styles for generated itinerary */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #itinerary-output, #itinerary-output * {
+    visibility: visible;
+  }
+  #itinerary-output {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+  nav, footer, .no-print {
+    display: none !important;
+  }
+}
